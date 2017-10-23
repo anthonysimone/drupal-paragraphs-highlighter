@@ -1,0 +1,76 @@
+// Drupalcamp presentation styles
+.paragraphs-toggle {
+  display: inline-block;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  @include btn(blue);
+  z-index: 9999;
+}
+.paragraphs-labels-toggle {
+  display: inline-block;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  @include btn(orange);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 300ms ease, visibility 0ms ease, top 300ms ease;
+  transition-delay: 0ms, 300ms, 0ms;
+  .show-paragraphs & {
+    opacity: 1;
+    top: 65px;
+    visibility: visible;
+    transition-delay: 0ms, 0ms, 0ms;
+  }
+}
+.show-paragraphs {
+  &.show-paragraphs-labels .paragraph:before {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .paragraph {
+    position: relative;
+    border: 5px solid #ff3a13;
+    &:before {
+      content: attr(data-paragraph);
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      border-radius: 1000px;
+      padding: 2px 4px;
+      white-space: nowrap;
+      color: $white;
+      background-color: #ff3a13;
+      transition: transform 300ms ease, opacity 300ms ease;
+      transform: translateY(calc(-100% - 4px));
+      z-index: 4000;
+    }
+    &:hover {
+      &:before {
+        //transform: translateY(calc(-100% - 4px));
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .paragraph {
+      border-color: #ffcf36;
+      &:before {
+        background-color: #ffcf36;
+      }
+      .paragraph {
+        border-color: #1bb4ff;
+        &:before {
+          background-color: #1bb4ff;
+        }
+        .paragraph {
+          border-color: #f119fc;
+          &:before {
+            background-color: #f119fc;
+          }
+        }
+      }
+    }
+  }
+}
